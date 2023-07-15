@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Socket.io Chat</title>
+    <style>
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="text" placeholder="user-id" id="user-id">
+
+    <form id="chat-form" action="">
+        <input id="input-recipient" placeholder="Recipient (optional)" autocomplete="off" />
+        <input id="input-message" autocomplete="off" />
+        <button>Send</button>
+    </form>
+
+
+    <ul id="messages"></ul>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // Connect to the server-side Socket.io
+        const user_id = document.getElementById('user-id').value; // Replace with the desired recipient ID
+        const socket = io({
+            query: {
+                user_id: user_id
+            }
+        });
+
+        // Handle incoming chat messages
+        socket.on('chat message', (data) => {
+            console.log(data)
+            const li = document.createElement('li');
+            li.textContent = data.sender + ": " + data.message;
+            document.getElementById('messages').appendChild(li);
+        });
+
+        // Send chat message to individual user
+        document.getElementById('chat-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const input = document.getElementById('input-message');
+            const recipient = document.getElementById('input-recipient').value;
+            const message = input.value;
+            const from = user_id;
+            if (message) {
+                socket.emit('chat message', { message, recipient, from});
+                input.value = '';
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>

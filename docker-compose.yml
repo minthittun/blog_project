@@ -1,0 +1,57 @@
+version: '3'
+services:
+  # Blog Service
+  postgres_blog_service:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mttApril123
+      POSTGRES_DB: blog_service_db
+    ports:
+      - 5432:5432
+    restart: on-failure
+
+  migrate_blog_service:
+    build:
+      context: ./blog_service
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - postgres_blog_service
+    command: npx sequelize-cli db:migrate
+
+  blog_service_api:
+    build:
+      context: ./blog_service
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - migrate_blog_service
+    restart: on-failure
+  # Blog Service
+
+  # Chat Service
+  chat_service_api:
+    build:
+      context: ./chat_service
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - mongo_chat_service
+    restart: on-failure
+
+  mongo_chat_service:
+    image: mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata:/data/db
+
+volumes:
+  dbdata:
