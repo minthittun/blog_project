@@ -13,31 +13,29 @@ function setupSocketIO(io) {
         }
       
         // Handle incoming chat messages
-        socket.on('chat message', (data) => {
+        socket.on('chat message', async (data) => {
           console.log('Message:', data.message);
           if (data.recipient) {
             // Send message to individual user
             const recipientSocketId = connectedUsers[data.recipient];
             if (recipientSocketId) {
       
-              io.to(recipientSocketId).emit('chat message', {
-                sender: data.from ?? "",
-                recipient: data.recipient ?? "",
-                message: data.message
-              });
-
               // Save the chat message to MongoDB
-              saveChatMessage(data);
+              let sentMessage = await saveChatMessage(data);
+              
+              io.to(recipientSocketId).emit('chat message', sentMessage);
 
             } else {
-              console.log(`Recipient '${data.recipient}' not found`);
+              let sentMessage = await saveChatMessage(data);
             }
           } else {
             // Broadcast the message to all connected clients
+            /*
             io.emit('chat message', {
               sender: data.from ?? "",
               message: data.message
             });
+            */
 
             // Save the chat message to MongoDB
             // saveChatMessageToDB(data);
@@ -57,9 +55,9 @@ function setupSocketIO(io) {
 
 async function saveChatMessage(data) {
 
-    const { from, recipient, message } = data;
-
-    const userFrom = await User.findOne({ userId: from });
+    const { sender, recipient, message } = data;
+    
+    const userFrom = await User.findOne({ userId: sender });
     const userRecipient = await User.findOne({ userId: recipient });
 
     let conversation = await Conversation.findOne({
@@ -85,11 +83,13 @@ async function saveChatMessage(data) {
         conversation.recentMessage = chatMessage._id;
         await conversation.save();
 
-        console.log('Chat message saved to MongoDB');
+        return ChatMessage.findById(chatMessage._id)
+        .populate('sender')
+        .populate('recipient');
     } catch (error) {
-        console.error('Error saving chat message:', error);
+        throw error;
     }
-
+    
 }
 
 module.exports = { setupSocketIO }

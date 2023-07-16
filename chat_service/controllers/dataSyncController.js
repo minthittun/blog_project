@@ -21,7 +21,7 @@ module.exports = {
                 .catch(err => {
                 });
 
-          res.status(201).json({ userId, name });
+          res.status(200).json({ userId, name });
         } catch (error) {
           res.status(500).json({ error: 'Internal server error' });
         }

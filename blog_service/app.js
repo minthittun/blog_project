@@ -1,6 +1,6 @@
+const cors = require('cors');
 const express = require('express');
 const app = express();
-
 const userRoutes = require('./routes/userRoutes');
 const postRoutes = require('./routes/postRoutes');
 const commentRoutes = require('./routes/commentRoutes');
@@ -19,6 +19,9 @@ User.hasMany(Comment, { foreignKey: 'userId', onDelete: 'CASCADE' });
 Comment.belongsTo(Post, { foreignKey: 'postId', onDelete: 'CASCADE' });
 Post.hasMany(Comment, { foreignKey: 'postId', onDelete: 'CASCADE' });
 
+
+// cors
+app.use(cors());
 
 // Middleware
 // Parse JSON request bodies

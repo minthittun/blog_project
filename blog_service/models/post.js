@@ -14,6 +14,10 @@ const Post = sequelize.define('Post', {
   content: {
     type: DataTypes.TEXT,
     allowNull: false
+  },
+  photo: {
+    type: DataTypes.STRING,
+    allowNull: true
   }
 });
 

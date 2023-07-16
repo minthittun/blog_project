@@ -6,7 +6,8 @@ const conversationController = require('../controllers/conversationController');
 
 router.get('/all/:userId', conversationController.getConversationByUserId);
 router.get('/messages/:conversationId', conversationController.getMessagesByConversationId);
-router.get('/dummmy', conversationController.testApi);
+router.post('/createConversation', conversationController.createConversation);
+router.get('/getAllUsers', conversationController.getAllUsers);
   
 
 module.exports = router;

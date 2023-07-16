@@ -11,9 +11,13 @@
   },
   "dependencies": {
     "antd": "^5.7.0",
+    "axios": "^1.4.0",
+    "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.1"
+    "react-masonry-css": "^1.0.16",
+    "react-router-dom": "^6.14.1",
+    "socket.io-client": "^4.7.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",

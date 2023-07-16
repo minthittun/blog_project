@@ -1,0 +1,122 @@
+*{
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* chat layout */
+.chat-layout-wrapper{
+  display: flex;
+  height: 100vh;
+}
+
+.chat-layout-left{
+  flex: 0 0 300px;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+}
+
+.chat-layout-right{
+  flex: 1; 
+  overflow-y: auto;
+}
+
+
+.conversation-list-item table{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.conversation-list-item{
+  border-bottom: solid 1px #efefef;
+}
+
+.conversation-list-item :hover{
+  cursor: pointer;
+  background: #efefef;
+}
+
+.conversation-list-item.active{
+  background: #efefef;
+}
+
+.conversation-list-item :active{
+  cursor: pointer;
+  background: #ddd;
+}
+
+/* chat layout */
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-large-ex{
+  font-size: 22px;
+}
+
+.text-small {
+  font-size: 12px;
+}
+
+.muted-text {
+  color: #999999; 
+}
+
+.paragraph-justify {
+ text-align: justify;
+}
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  
+  margin-bottom: 30px;
+}
+
+.logged-in-container {
+  margin-left: 300px;
+}
+
+.not-logged-in-container {
+  margin-left: 80px;
+}
+
+.left-right-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-content-padding{
+  padding: 40px 20px 20px 20px;
+}
+
+.margin-default {
+  margin-bottom: 5px;
+}
+  
+  .fade-in {
+    animation: fade-in 0.5s;
+  }
+
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+

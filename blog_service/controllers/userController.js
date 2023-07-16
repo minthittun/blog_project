@@ -32,7 +32,7 @@ module.exports = {
       await userDataSync(postData)
       // sync data
 
-      res.status(201).json(
+      res.status(200).json(
           { 
             data: {
               userId: user.id
@@ -66,7 +66,7 @@ module.exports = {
         await userDataSync(postData)
         // sync data
 
-        res.json({id: user.id, fullName: user.fullName, username: user.username});
+        res.status(200).json({id: user.id, fullName: user.fullName, username: user.username});
       } else {
         res.status(404).json({ error: 'User not found' });
       }
@@ -88,7 +88,7 @@ module.exports = {
       }
       user.profilePicture = file.path; 
       await user.save();
-      res.json({ message: 'Profile picture uploaded successfully' });
+      res.status(200).json({ message: 'Profile picture uploaded successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error' });
@@ -103,7 +103,7 @@ module.exports = {
         return res.status(404).json({ message: 'Profile picture not found' });
       }
       const profilePicturePath = path.join(__dirname, '..', user.profilePicture);
-      res.sendFile(profilePicturePath);
+      res.status(200).sendFile(profilePicturePath);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error' });
@@ -125,10 +125,10 @@ module.exports = {
       }
 
       // Generate a JWT token
-      const accessToken = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '15d' });
-      const refreshToken = jwt.sign({ userId: user.id }, refreshTokenSecret, { expiresIn: '30d' });
+      const accessToken = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '30d' });
+      const refreshToken = jwt.sign({ userId: user.id }, refreshTokenSecret, { expiresIn: '60d' });
 
-      res.json({ userId: user.id, accessToken, refreshToken });
+      res.status(200).json({ fullName: user.fullName, userId: user.id, accessToken, refreshToken });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error' });
@@ -152,7 +152,7 @@ module.exports = {
         const accessToken = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '15d' });
         const refreshToken = jwt.sign({ userId: user.id }, refreshTokenSecret, { expiresIn: '30d' });
 
-        res.json({ accessToken, refreshToken });
+        res.status(200).json({ accessToken, refreshToken });
       });
     } catch (error) {
       console.error(error);

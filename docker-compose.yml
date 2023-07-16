@@ -1,5 +1,16 @@
 version: '3'
 services:
+
+  # Front End
+  blogapp:
+    build:
+      context: ./blog_frontend
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+    ports:
+      - '80:80'
+
   # Blog Service
   postgres_blog_service:
     image: postgres
