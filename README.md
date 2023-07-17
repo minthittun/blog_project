@@ -38,7 +38,9 @@ npm install
 ```
 ### 4. Database configuration for blog service
 #### blog_service folder structure
+
 Update the database server credentials in config.json
+
     ├── blog_service
         ├── config
             ├── config.json
@@ -46,7 +48,9 @@ Update the database server credentials in config.json
 
 ### 5. Database configuration for blog service
 ### chat_service folder structure
+
 Update the database server connection string in database.js
+
     ├── chat_service
         ├── database.js
 ### 6. Run commands
