@@ -2,6 +2,7 @@
 This project was created with [React](https://react.dev), [Node.js](https://www.python.org/)
 ## About this project
 This is a blog application built using React and Node.js, following a microservice architecture. It consists of two services: the Blog Service and the Chat Service. The Blog Service is responsible for managing blog posts and uses Node.js and PostgreSQL, while the Chat Service enables real-time chat functionality and utilizes Node.js, Socket.IO, and MongoDB.
+
 ## Directory structure
     ├── blog_frontend
         ├── Dockerfile
@@ -10,6 +11,8 @@ This is a blog application built using React and Node.js, following a microservi
     ├── chat_service
         ├── Dockerfile
     ├── docker-compose.yml
+
+
 ## Usage (Recommanded)
 
 ### 1. Navigate to the project directory:
@@ -25,6 +28,9 @@ cd blog_project
 docker-compose up
 ```
 ### 3. Browser http://localhost
+
+---
+
 ## Manual Installation
 To get started with the Blog App, follow the steps below:
 ### 1. Clone the repository to your local machine:
@@ -65,3 +71,9 @@ Frontend
 ```
 npm run dev
 ```
+
+---
+
+## API Documentation
+
+[Cliek here](https://baganlab-space.sgp1.digitaloceanspaces.com/Blog%20Project.postman_collection.json) to see the API documentation.
