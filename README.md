@@ -18,6 +18,9 @@ cd blog_project
 ```
 
 ### 2. To run the application, execute the following command in the root directory:
+
+**Important! Please make sure that ports 5432, 3000, 3001, and 27017 are not being used on your local machine.**
+
 ```
 docker-compose up
 ```
