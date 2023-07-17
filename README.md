@@ -76,4 +76,4 @@ npm run dev
 
 ## API Documentation
 
-[Cliek here](https://baganlab-space.sgp1.digitaloceanspaces.com/Blog%20Project.postman_collection.json) to see the API documentation.
+[Cliek here](https://baganlab-space.sgp1.digitaloceanspaces.com/Blog%20Project.postman_collection.json) to see the API documentation (Postman Collection).
