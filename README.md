@@ -1,5 +1,5 @@
 # Blog Website
-This project was created with [React](https://react.dev), [Node.js](https://www.python.org/)
+This project was created with [React](https://react.dev), [Node.js](https://nodejs.org/en)
 ## About this project
 This is a blog application built using React and Node.js, following a microservice architecture. It consists of two services: the Blog Service and the Chat Service. The Blog Service is responsible for managing blog posts and uses Node.js and PostgreSQL, while the Chat Service enables real-time chat functionality and utilizes Node.js, Socket.IO, and MongoDB.
 
